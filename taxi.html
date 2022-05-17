@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Cape Town Taxi Rank</h1>
-<h2>A taxi can only leave when there's 15 passengers inside</h2>
+<h3>A taxi can only leave when there's 15 passengers inside</h3>
 <div class="container">
     <div x-data="{
         price1: 0,
@@ -19,16 +19,20 @@
         passenger2Qty: null,
         passenger3Qty: null,
         passenger4Qty: null,
-        leave1:null,
-        leave2:null,
-        leave3:null,
-        leave4:null,
+        depart1:null,
+        depart2:null,
+        depart3:null,
+        depart4:null,
         total() {
             return this.price1 + this.price2 + this.price3 + this.price4
         }
     }">
 
-
+    <div class="allTotal " x-show="total()"  >
+        <strong>Total price</strong>  
+        <span class="rankTotalPrice" x-text="total() <= 0 ? '0.00' : total().toFixed(2)">0.00</span>
+    </div>
+    <br>
 <table>
     <tr>
         <th>Departure</th>
@@ -37,6 +41,7 @@
         <th>Taxi trips</th>
         <th>Taxi Fare</th>
         <th>Total price</th>
+        <!-- <th>Taxis remaining</th> -->
     </tr>
 
     <tr>
@@ -46,7 +51,7 @@
        <span x-text="passenger1Qty">0</span>
         <button
         x-bind:disabled="passenger1Qty <= 0" id="minus" @click="passenger1Qty--">-</button></td>
-        <td><button  x-bind:disabled="passenger1Qty < 15 "  @click="leave1 +=1, price1 += 21 * 15, passenger1Qty -= 15">depart</button><span x-text="leave1">0</span> </td>
+        <td><button  x-bind:disabled="passenger1Qty < 15 "  @click="depart1 +=1, price1 += 21 * 15, passenger1Qty -= 15">depart</button><span x-text="depart1">0</span> </td>
        <td>R21</td>
         <td><span class="totalPrice1"
             x-html="price1 <= 0 ? 'R0.00' : 'R' + price1.toFixed(2)">0.00</span></td>
@@ -60,7 +65,7 @@
        <span x-text="passenger2Qty">0</span>
         <button
         x-bind:disabled="passenger2Qty <= 0" id="minus" @click="passenger2Qty--">-</button></td>
-        <td><button  x-bind:disabled="passenger2Qty < 15"  @click="leave2 +=1, price2 += 22 * 15, passenger2Qty -= 15">depart</button><span x-text="leave2">0</span> </td>
+        <td><button  x-bind:disabled="passenger2Qty < 15"  @click="depart2 +=1, price2 += 22 * 15, passenger2Qty -= 15">depart</button><span x-text="depart2">0</span> </td>
         <td>R22</td>
         <td><span class="totalPrice1"
             x-html="price2 <= 0 ? 'R0.00' : 'R' + price2.toFixed(2)">0.00</span></td>
@@ -73,7 +78,7 @@
        <span x-text="passenger3Qty">0</span>
         <button x-bind:disabled="passenger3Qty <= 0" id="minus" @click="passenger3Qty--">-</button></td>
 
-        <td><button  x-bind:disabled="passenger3Qty < 15 "  @click="leave3 +=1, price3 += 16 * 15, passenger3Qty -= 15">depart</button><span x-text="leave3">0</span> </td>
+        <td><button  x-bind:disabled="passenger3Qty < 15 "  @click="depart3 +=1, price3 += 16 * 15, passenger3Qty -= 15">depart</button><span x-text="depart3">0</span> </td>
         <td>R16</td>
         <td><span class="totalPrice1"
             x-html="price3 <= 0 ? 'R0.00' : 'R' + price3.toFixed(2)">0.00</span></td>    
@@ -86,7 +91,7 @@
                  <span x-text="passenger4Qty">0</span>
                   <button
                   x-bind:disabled="passenger4Qty <= 0" id="minus" @click="passenger4Qty--">-</button></td>
-                  <td><button  x-bind:disabled="passenger4Qty < 15 "  @click="leave4 +=1, price4 += 17 * 15, passenger4Qty -= 15">depart</button><span x-text="leave4">0</span> </td>
+                  <td><button  x-bind:disabled="passenger4Qty < 15 "  @click="depart4 +=1, price4 += 17 * 15, passenger4Qty -= 15">depart</button><span x-text="depart4">0</span> </td>
                  <td>R17</td>
                   <td><span class="totalPrice1"
                       x-html="price4 <= 0 ? 'R0.00' : 'R' + price4.toFixed(2)">0.00</span></td>
