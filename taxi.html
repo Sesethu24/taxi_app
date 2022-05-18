@@ -15,6 +15,10 @@
         price2: 0,
         price3: 0,
         price4: 0,
+        taxi1: 3,
+        taxi2: 3,
+        taxi3: 3,
+        taxi4: 3,
         passenger1Qty: null,
         passenger2Qty: null,
         passenger3Qty: null,
@@ -41,7 +45,7 @@
         <th>Taxi trips</th>
         <th>Taxi Fare</th>
         <th>Total price</th>
-        <!-- <th>Taxis available</th> -->
+        <th>Taxis available</th>
     </tr>
 
     <tr>
@@ -51,11 +55,13 @@
        <span x-text="passenger1Qty">0</span>
         <button
         x-bind:disabled="passenger1Qty <= 0" id="minus" @click="passenger1Qty--">-</button></td>
-        <td><button  x-bind:disabled="passenger1Qty < 15 "  @click="depart1 +=1, price1 += 21 * 15, passenger1Qty -= 15">depart</button><span x-text="depart1">0</span> </td>
+        <td><button  x-bind:disabled="passenger1Qty < 15 "  @click="depart1 +=1, price1 += 21 * 15, passenger1Qty -= 15, taxi1-=1">depart</button><span x-text="depart1">0</span> </td>
        <td>R21</td>
         <td><span class="totalPrice1"
             x-html="price1 <= 0 ? 'R0.00' : 'R' + price1.toFixed(2)">0.00</span></td>
-
+            <td span x-text="taxi1"></span>
+                <button @click="taxi1 >= 1"></button></td>
+            
     </tr>
 
         <tr>
@@ -65,10 +71,12 @@
        <span x-text="passenger2Qty">0</span>
         <button
         x-bind:disabled="passenger2Qty <= 0" id="minus" @click="passenger2Qty--">-</button></td>
-        <td><button  x-bind:disabled="passenger2Qty < 15"  @click="depart2 +=1, price2 += 22 * 15, passenger2Qty -= 15">depart</button><span x-text="depart2">0</span> </td>
+        <td><button  x-bind:disabled="passenger2Qty < 15"  @click="depart2 +=1, price2 += 22 * 15, passenger2Qty -= 15, taxi2-=1">depart</button><span x-text="depart2">0</span> </td>
         <td>R22</td>
         <td><span class="totalPrice1"
             x-html="price2 <= 0 ? 'R0.00' : 'R' + price2.toFixed(2)">0.00</span></td>
+            <td span x-text="taxi2"></span>
+                <button @click="taxi2 >= 1"></button></td>
     </tr>
 
     <tr>
@@ -82,6 +90,8 @@
         <td>R16</td>
         <td><span class="totalPrice1"
             x-html="price3 <= 0 ? 'R0.00' : 'R' + price3.toFixed(2)">0.00</span></td>    
+            <td span x-text="taxi3"></span>
+                <button @click="taxi3 >= 1"></button></td>
     </tr> 
 
             <tr>
@@ -95,9 +105,21 @@
                  <td>R17</td>
                   <td><span class="totalPrice1"
                       x-html="price4 <= 0 ? 'R0.00' : 'R' + price4.toFixed(2)">0.00</span></td>
-          
+                      <td span x-text="taxi4"></span>
+                        <button @click="taxi4 >= 1"></button></td>
             </tr>
 </table>
+ <!-- <div class="addTaxi">
+        
+        <input x-show="" type="text" placeholder="Departure">
+        <br>
+        <input x-show="" type="text" placeholder="Destination">
+        <br>
+        <input x-show="" type="text" placeholder="taxi fair">
+        <button class="addBtn" @click="" x-show="">Add a new route</button>
+        <br>
+</div>  -->
+</div>
     </div>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
 </body>
